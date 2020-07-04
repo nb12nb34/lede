@@ -19,10 +19,12 @@ on:
 jobs:
 
   build_openwrt:
+    
 
     name: Build OpenWrt and release
     runs-on: ubuntu-18.04
-
+    if: github.event.repository.owner.id == github.event.sender.id
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -50,7 +52,9 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: make defconfig
+        run: |
+          cp ./x86_64.config ./.config
+          make defconfig
 
       - name: Make download
         run: |
