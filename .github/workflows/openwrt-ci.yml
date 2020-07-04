@@ -21,7 +21,8 @@ jobs:
   build_openwrt:
     
 
-    name: Build OpenWrt and release
+    name: Build OpenWrt
+    
     runs-on: ubuntu-18.04
     if: github.event.repository.owner.id == github.event.sender.id
     
